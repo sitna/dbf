@@ -73,11 +73,15 @@ module.exports = function structure(data, meta) {
                     break;
 
                 // date
-                case 'D':
+                case 'D': {
+                    const date = new Date(val.toString());
+                    val = lib.lpad(date.getFullYear().toString(), 4, '0') + 
+                        lib.lpad((date.getMonth() + 1).toString(), 2, '0') + 
+                        lib.lpad(date.getDate().toString(), 2, '0');
                     offset = lib.writeField(view, 8,
                         lib.lpad(val.toString(), 8, ' '), offset);
                     break;
-
+                }
                 // number
                 case 'N':
                     offset = lib.writeField(view, f.size,
