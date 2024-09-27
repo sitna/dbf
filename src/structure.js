@@ -89,10 +89,10 @@ module.exports = function structure(data, meta) {
                     const start = new Date(-4713, 0, 1);
                     const days = Math.floor(date - start / 86400000);
                     const time = date.getHours() * 3600000 + date.getMinutes() * 60000 + date.getMilliseconds();
-                    view.setBigInt64(offset, days); 
-                    offset += 8;
-                    view.setBigInt64(offset, time); 
-                    offset += 8;
+                    view.setInt32(offset, days);
+                    offset += 4;
+                    view.setInt32(offset, time);
+                    offset += 4;
                     break;
                 }
                 // number
