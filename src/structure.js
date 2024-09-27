@@ -82,6 +82,19 @@ module.exports = function structure(data, meta) {
                         lib.lpad(val.toString(), 8, ' '), offset);
                     break;
                 }
+
+                // timestamp
+                case '@': {
+                    const date = new Date(val.toString());
+                    const start = new Date(-4713, 0, 1);
+                    const days = Math.floor(date - start / 86400000);
+                    const time = date.getHours() * 3600000 + date.getMinutes() * 60000 + date.getMilliseconds();
+                    view.setBigInt64(offset, days); 
+                    offset += 8;
+                    view.setBigInt64(offset, time); 
+                    offset += 8;
+                    break;
+                }
                 // number
                 case 'N':
                     offset = lib.writeField(view, f.size,
