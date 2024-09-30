@@ -25,8 +25,8 @@ module.exports = function structure(data, meta) {
         now = new Date(),
         view = new DataView(buffer);
 
-    // version number - dBase III
-    view.setUint8(0, 0x03);
+    // version number - dBase level 7
+    view.setUint8(0, 0x04);
     // date of last update
     view.setUint8(1, now.getFullYear() - 1900);
     view.setUint8(2, now.getMonth() + 1);
